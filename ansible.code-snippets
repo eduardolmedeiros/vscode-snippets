@@ -64,7 +64,7 @@
 			"        fstype: \"{{ item.fs_type }}\"",
 			"        opts: \"{{ item.fs_opts }}\"",
 			"        state: mounted",
-			"      with_items: \"{{ nfs_volumes }}\"",
+			"      loop: \"{{ nfs_volumes }}\"",
 		],
 		"description": "nfs loop sample"
 	},
@@ -78,7 +78,7 @@
 			"    src: \"{{ item.src }}\"",
 			"    group: \"{{ item.group }}\"",
 			"    mode: \"{{ item.mode }}\"",
-			"  with_items:",
+			"  loop:",
 			"    - { src: opt/tomcat/config/server.xml.j2, dest: /opt/tomcat/config/server.xml, owner: tomcat, group: tomcat, mode: 0640 }",
 			"    - { src: opt/tomcat/config/catalina.properties.j2, dest: /opt/tomcat/config/catalina.properties, owner: tomcat, group: tomcat, mode: 0640 }",
 			"  notify:",
