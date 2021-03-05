@@ -169,7 +169,7 @@
             "        port: 8080",	  
 			"",			
 			"# jinja file",
-			"{% for webserver,nodes in webserver.hosts.iteritems() %}",
+			"{% for webserver,nodes in webserver.hosts.items() %}",
 			" {{nodes.host}}",
 			" {{nodes.port}}",
 		   "{% endfor %}",
