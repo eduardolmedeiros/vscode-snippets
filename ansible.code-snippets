@@ -1,0 +1,182 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"playbook_base": {
+		"prefix": "playbook_base",
+		"body": [
+			"---",
+			"- hosts: all",
+			"  become: true",
+			"  roles:",
+			"    - role: role_name",
+			"  tasks:",
+			"    - name: this is simple ping task",
+			"      ping:",
+			"    $0"
+		],
+		"description": "base standard playbook"
+	},
+	"playbook_base_serial": {
+		"prefix": "playbook_base_serial",
+		"body": [
+			"---",
+			"- hosts: all",
+			"  become: true",
+			"  strategy: linear",
+			"  serial: 1",
+			"  roles:",
+			"    - role: role_name",
+			"  tasks:",
+			"    - name: this is sample task",
+			"      ping:",
+			"    $0"
+		],
+		"description": "base serial playbook"
+	},
+	"playbook_loop": {
+		"prefix": "playbook_loop",
+		"body": [
+			"---",
+			"- hosts: all",
+  			"  become: true",
+			"  vars:",
+			"    nfs_volumes:",
+			"      - name: archive",
+			"        dir: /opt/app/archive1",
+			"        fs_type: nfs",
+			"        device: storage-volume.example.com:/archive_vol_1",
+			"        fs_opts: 'defaults,noatime,nfsvers=4'",
+			"      - name: logs",
+			"        dir: /opt/app/logs",
+			"        fs_type: nfs",
+			"        device: storage-volume.example.com:/logs",
+			"        fs_opts: 'defaults,noatime,nfsvers=4'",
+			"",
+			"  tasks:$0",
+			"    - name: ensure nfs volumes mounted",
+			"      mount:",
+			"        path: \"{{ item.dir }}\"",
+			"        src: \"{{ item.device }}\"",
+			"        fstype: \"{{ item.fs_type }}\"",
+			"        opts: \"{{ item.fs_opts }}\"",
+			"        state: mounted",
+			"      with_items: \"{{ nfs_volumes }}\"",
+		],
+		"description": "nfs loop sample"
+	},
+	"play_loop": {
+		"prefix": "play_loop",
+		"body": [
+			"- name: copy tomcat templates",
+			"  template:",
+			"    dest: \"{{ item.dest }}\"",
+			"    owner: \"{{ item.owner }}\"",
+			"    src: \"{{ item.src }}\"",
+			"    group: \"{{ item.group }}\"",
+			"    mode: \"{{ item.mode }}\"",
+			"  with_items:",
+			"    - { src: opt/tomcat/config/server.xml.j2, dest: /opt/tomcat/config/server.xml, owner: tomcat, group: tomcat, mode: 0640 }",
+			"    - { src: opt/tomcat/config/catalina.properties.j2, dest: /opt/tomcat/config/catalina.properties, owner: tomcat, group: tomcat, mode: 0640 }",
+			"  notify:",
+			"    - restarted tomcat",
+		],
+		"description": "play loop sample"
+	},
+	"play_when": {
+		"prefix": "play_when",
+		"body": [
+			"- name: shut down centos8 systems",
+			"  command: /sbin/shutdown -t now",
+			"   when:",
+			"     - ansible_facts['distribution'] == \"CentOS",
+			"     - ansible_facts['distribution_major_version'] == \"8\"",
+		],
+		"description": "play when sample"
+	},
+	"play_debug": {
+		"prefix": "play_debug",
+		"body": [
+			"- name: debug",
+			"  debug:",
+			"    msg: \"{{ ansible_date_time.date }}\"",
+		],
+		"description": "play when sample"
+	},
+	"j2_if_else": {
+		"prefix": "j2_if_else",
+		"body": [
+		   "{% if var1 is sameas true %}",
+		   "ok. var1 is true",
+		   "{% else %}",
+		   "ok. var is not true",
+		   "{% endif %}",	
+		],
+		"description": "jinja if else sample"
+	},
+	"j2_loop": {
+		"prefix": "j2_loop",
+		"body": [
+			"# vars",
+			"",
+			"vars:",
+			"  colors:",
+			"    - blue",
+			"    - black",
+			"    - red",
+			"",			
+			"# jinja file",
+			"",
+			"{% for color in colors %}",
+			"  {{ color }}",
+			"{% endfor %}",
+		],
+		"description": "jinja2 loop sample"
+	},
+
+	"j2_loop_key_value": {
+		"prefix": "j2_loop_key_value",
+		"body": [
+			"# vars",
+			"",
+			"vars:",
+			"  cities:",
+			"    parana: curitiba",
+			"",			
+			"# jinja file",
+			"{% for k,v in cities.items() %}",
+			"{{ k }}={{ v }}",
+			"{% endfor %}",
+		],
+		"description": "jinja2 loop sample"
+	},
+
+	"j2_iter_items": {
+		"prefix": "j2_iter_items",
+		"body": [
+			"# vars",
+			"vars:",
+			"  webserver:",
+			"    hosts:",
+			"      host1:",
+			"        host: host1.mydomain.com",
+			"        port: 8080",
+			"      host2:",
+			"        host: host2.mydomain.com",
+            "        port: 8080",	  
+			"",			
+			"# jinja file",
+			"{% for webserver,nodes in webserver.hosts.iteritems() %}",
+			" {{nodes.host}}",
+			" {{nodes.port}}",
+		   "{% endfor %}",
+		   
+		],
+		"description": "jinja2 loop sample"
+	},
+
+
+}
