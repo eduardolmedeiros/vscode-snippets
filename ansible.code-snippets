@@ -112,7 +112,7 @@
 		   "{% if var1 is sameas true %}",
 		   "ok. var1 is true",
 		   "{% else %}",
-		   "ok. var is not true",
+		   "ok. var1 is not true",
 		   "{% endif %}",	
 		],
 		"description": "jinja if else sample"
