@@ -86,6 +86,51 @@
 		],
 		"description": "play loop sample"
 	},
+	"playbook_nested_dict": {
+		"prefix": "playbook_nested_dict",
+		"body": [
+			"---",
+			"- hosts: all",
+			"  vars:",
+			"    cars:",
+			"      - name: mustang",
+			"        color: yelow",
+			"      - name: ferrari",
+			"        color: red",
+			"",
+			"  tasks:$0",
+			"    - name: Iterate over dictionary",
+			"      debug:",
+			"        msg:",
+			"          - \"The car is {{ item.name }} and color is {{ item.color }}.\"",
+			"      loop: \"{{ cars }}\"",
+			"      loop_control:",
+			"        label: \"{{ item.name }}\"",
+		],
+		"description": "playbook nested dict sample"
+	},
+	"playbook_item2dict_nested": {
+		"prefix": "playbook_item2dict",
+		"body": [
+			"---",
+			"- hosts: all",
+			"  vars:",
+			"    cars:",
+			"      mustang:",
+			"        color: yellow",
+			"        year: 2020",
+			"      ferrari:",
+			"        color: red",
+			"        year: 2021",
+			"",
+			"  tasks:$0",
+			"    - name: Iterate over dictionary",
+			"      debug:",
+			"        msg: \"The car is {{ item.key }}, color is {{ item.value.color }} and year is {{ item.value.year }}.\"",
+			"      loop: \"{{ cars | dict2items }}\"",
+		],
+		"description": "playbook item2dict sample"
+	},
 	"play_when": {
 		"prefix": "play_when",
 		"body": [
