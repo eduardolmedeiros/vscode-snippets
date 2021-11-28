@@ -5,8 +5,8 @@
 	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
 	// Placeholders with the same ids are connected.
-	"playbook_base": {
-		"prefix": "playbook_base",
+	"playbook base": {
+		"prefix": "ansible_pb_base",
 		"body": [
 			"---",
 			"- hosts: all",
@@ -20,8 +20,8 @@
 		],
 		"description": "base standard playbook"
 	},
-	"playbook_base_serial": {
-		"prefix": "playbook_base_serial",
+	"playbook base serial": {
+		"prefix": "ansible_pb_base_serial",
 		"body": [
 			"---",
 			"- hosts: all",
@@ -37,8 +37,8 @@
 		],
 		"description": "base serial playbook"
 	},
-	"playbook_loop": {
-		"prefix": "playbook_loop",
+	"playbook loop": {
+		"prefix": "ansible_pb_loop",
 		"body": [
 			"---",
 			"- hosts: all",
@@ -68,8 +68,8 @@
 		],
 		"description": "nfs loop sample"
 	},
-	"play_loop": {
-		"prefix": "play_loop",
+	"play loop": {
+		"prefix": "ansible_play_loop",
 		"body": [
 			"- name: copy tomcat templates",
 			"  template:",
@@ -86,8 +86,8 @@
 		],
 		"description": "play loop sample"
 	},
-	"playbook_nested_dict": {
-		"prefix": "playbook_nested_dict",
+	"playbook nested dict": {
+		"prefix": "ansible_pb_nested_dict",
 		"body": [
 			"---",
 			"- hosts: all",
@@ -107,10 +107,10 @@
 			"      loop_control:",
 			"        label: \"{{ item.name }}\"",
 		],
-		"description": "playbook nested dict sample"
+		"description": "playbook nested dictionary sample"
 	},
-	"playbook_item2dict_nested": {
-		"prefix": "playbook_item2dict",
+	"playbook item2dict nested": {
+		"prefix": "ansible_pb_item2dict",
 		"body": [
 			"---",
 			"- hosts: all",
@@ -131,8 +131,9 @@
 		],
 		"description": "playbook item2dict sample"
 	},
-	"play_when": {
-		"prefix": "play_when",
+
+	"play when": {
+		"prefix": "ansible_play_when",
 		"body": [
 			"- name: shut down centos8 systems",
 			"  command: /sbin/shutdown -t now",
@@ -142,8 +143,8 @@
 		],
 		"description": "play when sample"
 	},
-	"play_debug": {
-		"prefix": "play_debug",
+	"play debug": {
+		"prefix": "ansible_play_debug",
 		"body": [
 			"- name: debug",
 			"  debug:",
@@ -151,8 +152,8 @@
 		],
 		"description": "play when sample"
 	},
-	"j2_if_else": {
-		"prefix": "j2_if_else",
+	"jinja2 if else": {
+		"prefix": "ansible_j2_if_else",
 		"body": [
 		   "{% if var1 is sameas true %}",
 		   "ok. var1 is true",
@@ -162,8 +163,8 @@
 		],
 		"description": "jinja if else sample"
 	},
-	"j2_loop": {
-		"prefix": "j2_loop",
+	"jinja2 loop": {
+		"prefix": "ansible_j2_loop",
 		"body": [
 			"# vars",
 			"",
@@ -182,8 +183,8 @@
 		"description": "jinja2 loop sample"
 	},
 
-	"j2_loop_key_value": {
-		"prefix": "j2_loop_key_value",
+	"jinja2 loop key value": {
+		"prefix": "ansible_j2_loop_key_value",
 		"body": [
 			"# vars",
 			"",
@@ -199,8 +200,8 @@
 		"description": "jinja2 loop sample"
 	},
 
-	"j2_iter_items": {
-		"prefix": "j2_iter_items",
+	"jinja2 iter items": {
+		"prefix": "ansible_j2_iter_items",
 		"body": [
 			"# vars",
 			"vars:",
